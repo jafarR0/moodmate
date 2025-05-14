@@ -1,7 +1,7 @@
-# MindBalance: Mental Health Tracking Web Application
+# NeuroWell: Mental Health Tracking Web Application
 
 ## Overview
-MindBalance is a modern web application designed to help users track their mental health, analyze their mood and thoughts using sentiment analysis, and receive personalized recommendations, including helpful videos and professional contacts. The app emphasizes privacy, ease of use, and actionable insights for self-improvement.
+NeuroWell is a modern web application designed to help users track their mental health, analyze their mood and thoughts using sentiment analysis, and receive personalized recommendations, including helpful videos and professional contacts. The app emphasizes privacy, ease of use, and actionable insights for self-improvement.
 
 ---
 

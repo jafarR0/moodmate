@@ -1,0 +1,330 @@
+:root {
+    --primary-color: #6366f1;
+    --secondary-color: #4f46e5;
+    --background-color: #f8fafc;
+    --text-color: #1e293b;
+    --card-background: #ffffff;
+    --border-color: #e2e8f0;
+    --error-color: #ef4444;
+    --success-color: #22c55e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: var(--card-background);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: var(--card-background);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#user-email {
+    font-weight: 500;
+}
+
+/* Results Section */
+#sentiment-score {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background-color: var(--background-color);
+}
+
+/* Sentiment Test Styling */
+#test-sentiment {
+    background-color: #f3f4f6;
+    color: var(--text-color);
+    margin-top: 10px;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+}
+
+#test-sentiment:hover {
+    background-color: #e5e7eb;
+}
+
+.secondary-button {
+    background-color: #f3f4f6;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.secondary-button:hover {
+    background-color: #e5e7eb;
+}
+
+#test-sentiment-result {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.sentiment-test-loading {
+    background-color: #f3f4f6;
+    color: var(--text-color);
+}
+
+.sentiment-test-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.sentiment-test-result {
+    background-color: #f3f4f6;
+}
+
+.sentiment-result {
+    display: flex;
+    align-items: start;
+}
+
+.sentiment-emoji {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.sentiment-details {
+    flex: 1;
+}
+
+.sentiment-text {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.sentiment-breakdown {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.sentiment-bar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.sentiment-label {
+    width: 75px;
+    font-size: 0.85rem;
+}
+
+.sentiment-bar-bg {
+    flex: 1;
+    height: 10px;
+    background-color: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 10px;
+}
+
+.sentiment-bar {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.sentiment-bar.positive {
+    background-color: #10b981;
+}
+
+.sentiment-bar.negative {
+    background-color: #ef4444;
+}
+
+.sentiment-bar.neutral {
+    background-color: #6b7280;
+}
+
+.sentiment-value {
+    width: 40px;
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+.sentiment-result.positive {
+    color: #047857;
+}
+
+.sentiment-result.negative {
+    color: #b91c1c;
+}
+
+.sentiment-result.neutral {
+    color: #4b5563;
+}
+
+/* Example sentiment links */
+.sentiment-examples {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border-left: 2px solid var(--border-color);
+}
+
+.examples-title {
+    margin-bottom: 5px;
+    color: #6b7280;
+}
+
+.examples-links {
+    display: flex;
+    gap: 10px;
+}
+
+.example-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.example-link:hover {
+    text-decoration: underline;
+}
+
+/* Entry sentiment display */
+.entry-sentiment {
+    margin-top: 8px;
+    padding: 5px 8px;
+    background-color: #f3f4f6;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #app {
+        padding: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeIn 0.3s ease-out;
+} 

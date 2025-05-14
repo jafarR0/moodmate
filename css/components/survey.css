@@ -1,0 +1,374 @@
+#survey-form {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#mental-health-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+#mood {
+    font-size: 1.1rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+    transition: border-color 0.2s;
+}
+
+#mood:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+#thoughts {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: white;
+    transition: border-color 0.2s;
+}
+
+#thoughts:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Rating Slider Styles */
+input[type="range"] {
+    -webkit-appearance: none;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    outline: none;
+    margin: 1rem 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+#rating-value {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+
+/* Results Section Styles */
+#results-section {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#sentiment-score {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+#doctor-recommendations,
+#video-recommendations {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* History Section Styles */
+#history-section {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#entries-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sentiment-graph-container {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#sentiment-graph {
+    width: 100%;
+    height: 400px;
+}
+
+.timeline-entry {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.timeline-entry:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entry-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+}
+
+.expand-indicator {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.timeline-entry.expanded .expand-indicator {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.entry-details {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 0;
+}
+
+.timeline-entry.expanded .entry-details {
+    max-height: 1000px;
+    opacity: 1;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.entry-thoughts h4,
+.entry-activity h4,
+.entry-gratitude h4,
+.entry-goals h4 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.entry-thoughts p,
+.entry-activity p,
+.entry-gratitude p,
+.entry-goals p {
+    color: var(--text-color);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+}
+
+.entry-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+}
+
+.metric-label {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.metric-value {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.entry-activity,
+.entry-gratitude,
+.entry-goals {
+    margin-bottom: 1.5rem;
+}
+
+/* Submit Button Styles */
+button[type="submit"] {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+button[type="submit"]:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Survey Section Styles */
+.survey-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.survey-section h3 {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    font-size: 1.3rem;
+}
+
+.range-with-labels {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.range-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    min-width: 60px;
+}
+
+.range-value {
+    font-weight: 600;
+    color: var(--primary-color);
+    min-width: 30px;
+    text-align: center;
+}
+
+.optional {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: normal;
+}
+
+@media (max-width: 768px) {
+    #survey-form,
+    #results-section,
+    #history-section {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    #recommendations {
+        grid-template-columns: 1fr;
+    }
+
+    .range-with-labels {
+        flex-wrap: wrap;
+    }
+
+    .range-label {
+        min-width: 50px;
+    }
+
+    #sentiment-graph {
+        height: 300px;
+    }
+
+    .entry-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .expand-indicator {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: none;
+    }
+
+    .timeline-entry.expanded .expand-indicator {
+        transform: rotate(180deg);
+    }
+
+    .entry-metrics {
+        grid-template-columns: 1fr;
+    }
+} 

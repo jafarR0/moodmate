@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroWell - Mental Health Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components/auth.css">
+    <link rel="stylesheet" href="css/components/survey.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Auth Section -->
+        <section id="auth-section" class="section">
+            <h1>🧠 NeuroWell</h1>
+            <div id="auth-form">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Login</button>
+                    <button class="auth-tab" data-tab="signup">Sign Up</button>
+                </div>
+                
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form-element">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Login</button>
+                    <div class="auth-links">
+                        <a href="#" id="forgot-password">Forgot Password?</a>
+                    </div>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signup-form" class="auth-form-element hidden">
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                        <small class="password-hint">Password must be at least 6 characters long</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
+                    </div>
+                    <button type="submit" class="auth-button">Sign Up</button>
+                </form>
+
+                <!-- Password Reset Form -->
+                <form id="reset-form" class="auth-form-element hidden">
+                    <div class="form-group">
+                        <label for="reset-email">Email</label>
+                        <input type="email" id="reset-email" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="auth-button">Reset Password</button>
+                    <div class="auth-links">
+                        <a href="#" id="back-to-login">Back to Login</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Main App Section -->
+        <section id="app-section" class="section hidden">
+            <nav>
+                <span id="user-email"></span>
+                <button id="logout-btn">Logout</button>
+            </nav>
+
+            <!-- Daily Survey Form -->
+            <div id="survey-form" class="card">
+                <h2>Daily Mental Health Check-in</h2>
+                <form id="mental-health-form">
+                    <div class="form-group">
+                        <label for="mood">How are you feeling today?</label>
+                        <select id="mood" required>
+                            <option value="great">😊 Great</option>
+                            <option value="good">🙂 Good</option>
+                            <option value="okay">😐 Okay</option>
+                            <option value="bad">😔 Not so good</option>
+                            <option value="terrible">😢 Terrible</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="thoughts">Share your thoughts:</label>
+                        <textarea id="thoughts" rows="4" required placeholder="How was your day? What's on your mind?"></textarea>
+                        <!-- <button type="button" id="test-sentiment" class="secondary-button">Test Sentiment</button> -->
+                        <!-- <div id="test-sentiment-result" class="hidden"></div> -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rating">Rate your overall mental well-being today (1-10):</label>
+                        <input type="range" id="rating" min="1" max="10" value="5">
+                        <span id="rating-value">5</span>
+                    </div>
+                    
+                    <!-- New Survey Questions -->
+                    <div class="survey-section">
+                        <h3>Additional Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="sleep-quality">How well did you sleep last night? (1-5)</label>
+                            <div class="range-with-labels">
+                                <span class="range-label">Poor</span>
+                                <input type="range" id="sleep-quality" min="1" max="5" value="3">
+                                <span class="range-label">Excellent</span>
+                                <span id="sleep-quality-value" class="range-value">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="energy-level">Energy level today: (1-5)</label>
+                            <div class="range-with-labels">
+                                <span class="range-label">Low</span>
+                                <input type="range" id="energy-level" min="1" max="5" value="3">
+                                <span class="range-label">High</span>
+                                <span id="energy-level-value" class="range-value">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="stress-level">Stress level today: (1-5)</label>
+                            <div class="range-with-labels">
+                                <span class="range-label">Low</span>
+                                <input type="range" id="stress-level" min="1" max="5" value="3">
+                                <span class="range-label">High</span>
+                                <span id="stress-level-value" class="range-value">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="anxiety-level">Anxiety level today: (1-5)</label>
+                            <div class="range-with-labels">
+                                <span class="range-label">Low</span>
+                                <input type="range" id="anxiety-level" min="1" max="5" value="3">
+                                <span class="range-label">High</span>
+                                <span id="anxiety-level-value" class="range-value">3</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="social-interaction">Social interactions today:</label>
+                            <select id="social-interaction">
+                                <option value="none">No social interaction</option>
+                                <option value="minimal">Minimal interaction</option>
+                                <option value="moderate" selected>Moderate interaction</option>
+                                <option value="significant">Significant interaction</option>
+                                <option value="extensive">Extensive interaction</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="physical-activity">Physical activity today:</label>
+                            <select id="physical-activity">
+                                <option value="none">None</option>
+                                <option value="light">Light (walking, stretching)</option>
+                                <option value="moderate" selected>Moderate (brisk walking, yoga)</option>
+                                <option value="intense">Intense (running, sports, gym)</option>
+                                <option value="very-intense">Very intense (hard training)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gratitude-notes">What are you grateful for today? <span class="optional">(optional)</span></label>
+                            <textarea id="gratitude-notes" rows="2" placeholder="List things you're grateful for today..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="goals-today">Goals or intentions for today: <span class="optional">(optional)</span></label>
+                            <textarea id="goals-today" rows="2" placeholder="What do you want to accomplish today?"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-section" class="card hidden">
+                <h2>Analysis Results</h2>
+                <div id="sentiment-score"></div>
+                <div id="recommendations">
+                    <div id="doctor-recommendations"></div>
+                    <div id="video-recommendations"></div>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div id="history-section" class="card">
+                <h2>Your Journey</h2>
+                <div class="sentiment-graph-container">
+                    <canvas id="sentiment-graph"></canvas>
+                </div>
+                <div id="entries-timeline"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Make Supabase available globally
+        window.supabase = supabase;
+    </script>
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/survey.js"></script>
+    <script type="module" src="js/sentiment.js"></script>
+    <script type="module" src="js/recommendations.js"></script>
+</body>
+</html> 
